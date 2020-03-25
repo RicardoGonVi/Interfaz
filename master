@@ -1,0 +1,98 @@
+#librerias
+from tkinter import *                               # Tk(), Label, Canvas, Photo
+from threading import Thread                        # p.start()
+import threading                                 
+import os                                           # ruta = os.path.join('')
+import time                                         # time.sleep(x)
+import random
+from tkinter import messagebox                      # AskYesNo ()
+from tkinter import ttk
+import sys
+
+def cargar_imag(NombreImagen):                      # Función que permite cargar imágenes
+    Ruta=os.path.join('Images', NombreImagen)       # acceder a la ruta del directorio donde se encuentre la imagen
+    Imagen=PhotoImage(file=Ruta)                    # CARGA LA IMAGEN
+    return Imagen
+
+def cerrarVentana():
+    raiz.destroy()
+
+def M_Manual():
+    manual=Toplevel(raiz)                           # crea otra ventana
+    manual.title('Modo Manual. Araya, González, Montoya y Villalobos.')
+    manual.minsize(800,500)
+    manual.resizable(width=NO,height=NO)
+    b_salir= Button(manual, text="SALIR", justify ="center", bg="orange", fg="white", command=cerrarVentana)
+    b_salir.place(x=755, y=470)
+
+def M_Programable():
+    programable=Toplevel(raiz)                      # crea otra ventana
+    programable.title('Modo Programable. Araya, González, Montoya y Villalobos.')
+    programable.minsize(800,500)
+    programable.resizable(width=NO,height=NO)
+    b_salir= Button(programable, text="SALIR", justify ="center", bg="orange", fg="white", command=cerrarVentana)
+    b_salir.place(x=755, y=470)
+
+def M_Busqueda():
+    busqueda=Toplevel(raiz)                         # crea otra ventana
+    busqueda.title('Modo Busqueda. Araya, González, Montoya y Villalobos.')
+    busqueda.minsize(800,500)
+    busqueda.resizable(width=NO,height=NO)
+    b_salir= Button(busqueda, text="SALIR", justify ="center", bg="orange", fg="white", command=cerrarVentana)
+    b_salir.place(x=755, y=470)
+
+def M_Watchdog():
+    watchdog=Toplevel(raiz)                         # crea otra ventana
+    watchdog.title('Modo Watchdog. Araya, González, Montoya y Villalobos.')
+    watchdog.minsize(800,500)
+    watchdog.resizable(width=NO,height=NO)
+    b_salir= Button(watchdog, text="SALIR", justify ="center", bg="orange", fg="white", command=cerrarVentana)
+    b_salir.place(x=755, y=470)
+    
+##def apagar():
+##    salir = False
+
+#----------------Menu después de poner nombre
+def MenuInicio():
+    raiz.withdraw()
+    inicio = Toplevel(raiz)
+    inicio.title('Menu Inicio. Araya, González, Montoya y Villalobos.')
+    inicio.minsize(800,500)
+    inicio.resizable(width=NO,height=NO)
+    
+    #imagen fondo 
+    C_inicio=Canvas(inicio, width=738,height=570)   # crea el canvas
+    C_inicio.pack()
+    Fondo=cargar_imag('consola.png')                # carga y coloca la imagen de fondo
+    C_inicio.fondo=Fondo
+    C_inicio.create_image(1,1, anchor="nw", image=Fondo)
+
+    #texto en el menu
+    L_modosJuego=Label(inicio, text = "SELECCIONE UN MODO DE JUEGO:\nY: Modo Manual\nB: Modo Programable\nA: Modo Búsqueda\nX: Modo Watchdog")
+    L_modosJuego.place(x=520, y=18)
+    L_modosJuego.config(bg="gray30", fg="white", font =("fixedsys",16), justify="left")
+
+    #botones menu
+    b_Manual = Button(inicio, font=('fixedsys',16), text = "Y", width = 2,
+                        justify = "center", bg="orange", fg="white", command=M_Manual)
+    b_Manual.place(x=570, y=345)
+    b_Programable = Button(inicio, font=('fixedsys',16), text = "B", width = 2,
+                        justify = "center", bg="red", fg="white", command=M_Programable)
+    b_Programable.place(x=590, y=403)
+    b_Busqueda = Button(inicio, font=('fixedsys',16), text = "A", width = 2,
+                        justify = "center", bg="lime green", fg="white", command=M_Busqueda)
+    b_Busqueda.place(x=533, y=425)
+    b_Watchdog = Button(inicio, font=('fixedsys',16), text = "X", width = 2,
+                        justify = "center", bg="blue", fg="white", command=M_Watchdog)
+    b_Watchdog.place(x=515, y=365)
+##    b_salir = Button(inicio, font=('fixedsys',16), text = "OFF", justify = "center", bg="pink", fg="red", command=apagar)
+##    b_salir.place(x=385, y=300)
+#------------------------------------------
+
+while True:
+    raiz = Tk()                                     # iniciando la raiz
+    MenuInicio()
+    raiz.mainloop()                                 # loop intefaz
+    
+        
+
